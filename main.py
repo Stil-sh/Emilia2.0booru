@@ -41,6 +41,11 @@ class DanbooruBot:
             # Добавляем авторизацию если есть ключи
             if DANBOORU_API_KEY and DANBOORU_USER:
                 params.update({
+            if post and 'file_url' in post:
+    # Добавьте проверку URL
+    image_url = post['file_url']
+    if not image_url.startswith(('http://', 'https://')):
+        image_url = f"{self.base_url}{image_url}"
                     "login": DANBOORU_USER,
                     "api_key": DANBOORU_API_KEY
                 })
